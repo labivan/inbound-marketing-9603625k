@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inbound Marketing Decision Lab</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
+                    colors: {
+                        brand: {
+                            dark: '#0f172a',    // Slate 900
+                            primary: '#2563eb', // Blue 600
+                            accent: '#10b981',  // Emerald 500
+                            light: '#f8fafc'    // Slate 50
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Barra de progreso de lectura */
+        #progress-bar {
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #10b981);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            transition: width 0.1s;
+        }
+        /* Ocultar scrollbar en tabs pero permitir scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-brand-light text-slate-800 antialiased">
+
+    <!-- Barra de Progreso -->
+    <div id="progress-bar"></div>
+
+    <!-- Navegación -->
+    <nav class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-2">
+                    <i class="fa-solid fa-bullseye text-brand-primary text-2xl"></i>
+                    <span class="font-bold text-xl tracking-tight text-brand-dark">IM Decision Lab</span>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-slate-600 hover:text-brand-primary font-medium transition">Inicio</a>
+                    <a href="#comparativa" class="text-slate-600 hover:text-brand-primary font-medium transition">Outbound vs Inbound</a>
+                    <a href="#flywheel" class="text-slate-600 hover:text-brand-primary font-medium transition">Flywheel</a>
+                    <a href="#persona" class="text-slate-600 hover:text-brand-primary font-medium transition">Buyer Persona</a>
+                    <a href="#calculadora" class="text-slate-600 hover:text-brand-primary font-medium transition">Calculadora ROI</a>
+                    <a href="#casos" class="text-slate-600 hover:text-brand-primary font-medium transition">Casos</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-brand-primary focus:outline-none">
+                        <i class="fa-solid fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="block px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-brand-primary rounded-md">Inicio</a>
+                <a href="#comparativa" class="block px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-brand-primary rounded-md">Comparativa</a>
+                <a href="#flywheel" class="block px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-brand-primary rounded-md">Flywheel</a>
+                <a href="#calculadora" class="block px-3 py-2 text-slate-600 hover:bg-slate-50 hover:text-brand-primary rounded-md">Calculadora ROI</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="relative pt-32 pb-20 lg:pt-40 lg:pb-28 bg-brand-dark overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1920&q=80" alt="Background" class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block py-1 px-3 rounded-full bg-brand-primary/20 text-blue-300 text-sm font-semibold mb-6 border border-blue-500/30">
+                Trabajo Final de Semestre · Marketing Digital 2026
+            </span>
+            <h1 class="text-4xl md:text-6xl font-extrabold text-white tracking-tight mb-6">
+                Deja de interrumpir. <br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Empieza a atraer.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-slate-300 mb-10">
+                Laboratorio de decisión estratégica para la implementación de Inbound Marketing en el mercado mexicano. Datos, metodología y ROI comprobable.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#calculadora" class="px-8 py-4 bg-brand-accent hover:bg-emerald-600 text-white font-bold rounded-lg shadow-lg hover:shadow-emerald-500/30 transition-all transform hover:-translate-y-1">
+                    <i class="fa-solid fa-calculator mr-2"></i> Probar Calculadora ROI
+                </a>
+                <a href="#flywheel" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white font-semibold rounded-lg border border-white/20 transition-all backdrop-blur-sm">
+                    Explorar Metodología
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparativa Outbound vs Inbound -->
+    <section id="comparativa" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark">El Cambio de Paradigma</h2>
+                <p class="mt-4 text-slate-600 max-w-2xl mx-auto">La saturación publicitaria y el ad-blocking han roto el modelo tradicional. El inbound construye activos, no solo gastos.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Outbound -->
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-8 hover:shadow-lg transition-shadow">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center text-red-600">
+                            <i class="fa-solid fa-bullhorn text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-800">Outbound (Push)</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-600">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> <span>Interrumpe al usuario (Ads, Cold Calls).</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> <span>CAC (Costo de Adquisición) en aumento constante.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> <span>El activo se "apaga" al dejar de pagar.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i> <span>Baja confianza del consumidor (Ad-blockers).</span></li>
+                    </ul>
+                </div>
+                <!-- Inbound -->
+                <div class="bg-blue-50 border border-blue-100 rounded-2xl p-8 hover:shadow-xl hover:border-blue-300 transition-all transform hover:-translate-y-1">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-brand-primary">
+                            <i class="fa-solid fa-magnet text-xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-brand-dark">Inbound (Pull)</h3>
+                    </div>
+                    <ul class="space-y-4 text-slate-700">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-accent mt-1"></i> <span>Atrae con contenido útil y relevante.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-accent mt-1"></i> <span>CAC decreciente a largo plazo (Efecto compuesto).</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-accent mt-1"></i> <span>Construye activos propios: Base de datos y SEO.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand-accent mt-1"></i> <span>Genera confianza y autoridad de marca.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flywheel Interactivo -->
+    <section id="flywheel" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark">El Flywheel del Crecimiento</h2>
+                <p class="mt-4 text-slate-600">Pasa el el mouse sobre cada fase para descubrir la métrica clave y la táctica principal.</p>
+            </div>
+            <div class="grid md:grid-cols-4 gap-6">
+                <!-- Atraer -->
+                <div class="group bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-brand-primary transition-all duration-300 cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-blue-100"></div>
+                    <i class="fa-solid fa-eye text-3xl text-brand-primary mb-4 relative z-10"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 relative z-10">1. Atraer</h3>
+                    <p class="text-slate-600 text-sm relative z-10">Contenido educativo, SEO y GEO para ser encontrado.</p>
+                    <div class="mt-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-xs font-bold text-brand-primary uppercase tracking-wider">Métrica Clave</p>
+                        <p class="text-lg font-semibold text-slate-800">Tráfico Orgánico & Citas en IA</p>
+                    </div>
+                </div>
+                <!-- Convertir -->
+                <div class="group bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-brand-primary transition-all duration-300 cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-emerald-100"></div>
+                    <i class="fa-solid fa-filter text-3xl text-brand-accent mb-4 relative z-10"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 relative z-10">2. Convertir</h3>
+                    <p class="text-slate-600 text-sm relative z-10">Landing pages, lead magnets y formularios optimizados.</p>
+                    <div class="mt-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-xs font-bold text-brand-accent uppercase tracking-wider">Métrica Clave</p>
+                        <p class="text-lg font-semibold text-slate-800">Tasa de Conversión (CVR)</p>
+                    </div>
+                </div>
+                <!-- Cerrar -->
+                <div class="group bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-brand-primary transition-all duration-300 cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-purple-50 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-purple-100"></div>
+                    <i class="fa-solid fa-handshake text-3xl text-purple-600 mb-4 relative z-10"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 relative z-10">3. Cerrar</h3>
+                    <p class="text-slate-600 text-sm relative z-10">Lead nurturing, email automatizado y alineación con ventas.</p>
+                    <div class="mt-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-xs font-bold text-purple-600 uppercase tracking-wider">Métrica Clave</p>
+                        <p class="text-lg font-semibold text-slate-800">CAC & Ciclo de Venta</p>
+                    </div>
+                </div>
+                <!-- Deleitar -->
+                <div class="group bg-white p-6 rounded-xl shadow-sm border border-slate-200 hover:shadow-xl hover:border-brand-primary transition-all duration-300 cursor-pointer relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-amber-50 rounded-bl-full -mr-4 -mt-4 transition-all group-hover:bg-amber-100"></div>
+                    <i class="fa-solid fa-heart text-3xl text-amber-500 mb-4 relative z-10"></i>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2 relative z-10">4. Deleitar</h3>
+                    <p class="text-slate-600 text-sm relative z-10">Onboarding, soporte excepcional y programas de referidos.</p>
+                    <div class="mt-4 pt-4 border-t border-slate-100 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <p class="text-xs font-bold text-amber-600 uppercase tracking-wider">Métrica Clave</p>
+                        <p class="text-lg font-semibold text-slate-800">NRR (Retención Neta) & NPS</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Buyer Persona Interactivo (Tabs) -->
+    <section id="persona" class="py-20 bg-white">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-brand-dark">Arquetipo de Cliente: "María, Gerente de Marketing"</h2>
+                <p class="mt-4 text-slate-600">Haz clic en las pestañas para explorar su perfil psicológico y journey de compra.</p>
+            </div>
+            
+            <div class="bg-slate-50 rounded-2xl shadow-lg border border-slate-200 overflow-hidden">
+                <div class="grid md:grid-cols-3">
+                    <!-- Perfil Visual -->
+                    <div class="bg-brand-dark p-8 text-white flex flex-col items-center text-center">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80" alt="María" class="w-32 h-32 rounded-full border-4 border-brand-accent mb-4 object-cover">
+                        <h3 class="text-2xl font-bold">María González</h3>
+                        <p class="text-blue-300 font-medium">Gerente de Marketing, PyME B2B</p>
+                        <div class="mt-6 space-y-2 text-sm text-slate-300 text-left w-full">
+                            <p><i class="fa-solid fa-briefcase w-6 text-center"></i> 35-45 años, CDMX</p>
+                            <p><i class="fa-solid fa-building w-6 text-center"></i> Empresa de 10-50 empleados</p>
+                            <p><i class="fa-solid fa-laptop w-6 text-center"></i> Usa LinkedIn y WhatsApp</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs y Contenido -->
+                    <div class="md:col-span-2 p-8">
+                        <!-- Botones de Tabs -->
+                        <div class="flex space-x-2 border-b border-slate-200 mb-6 overflow-x-auto no-scrollbar">
+                            <button onclick="openTab(event, 'dolores')" class="tab-btn active-tab px-4 py-2 text-sm font-semibold text-brand-primary border-b-2 border-brand-primary focus:outline-none whitespace-nowrap">Dolores y Frustraciones</button>
+                            <button onclick="openTab(event, 'objetivos')" class="tab-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent focus:outline-none whitespace-nowrap">Objetivos</button>
+                            <button onclick="openTab(event, 'journey')" class="tab-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent focus:outline-none whitespace-nowrap">Journey de Compra</button>
+                            <button onclick="openTab(event, 'objeciones')" class="tab-btn px-4 py-2 text-sm font-semibold text-slate-500 hover:text-slate-700 border-b-2 border-transparent focus:outline-none whitespace-nowrap">Objeciones</button>
+                        </div>
+                        
+                        <!-- Contenido de Tabs -->
+                        <div id="dolores" class="tab-content block animate-fade-in">
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1"></i> "No tengo tiempo para crear contenido de calidad consistentemente."</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1"></i> "Me cuesta demostrar el ROI de marketing a la dirección."</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-triangle-exclamation text-amber-500 mt-1"></i> "El equipo de ventas se queja de que los leads no están calificados."</li>
+                            </ul>
+                        </div>
+                        <div id="objetivos" class="tab-content hidden animate-fade-in">
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-bullseye text-brand-primary mt-1"></i> Reducir el Costo de Adquisición de Clientes (CAC) en un 20%.</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-bullseye text-brand-primary mt-1"></i> Generar un pipeline predecible de 50 leads calificados al mes.</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-bullseye text-brand-primary mt-1"></i> Posicionar a la empresa como referente en su nicho local.</li>
+                            </ul>
+                        </div>
+                        <div id="journey" class="tab-content hidden animate-fade-in">
+                            <div class="space-y-4">
+                                <div class="flex gap-4"><span class="font-bold text-brand-primary w-24">1. See:</span><span class="text-slate-600">Busca en Google "cómo generar más leads B2B".</span></div>
+                                <div class="flex gap-4"><span class="font-bold text-brand-primary w-24">2. Think:</span><span class="text-slate-600">Descarga una guía comparativa de herramientas de CRM.</span></div>
+                                <div class="flex gap-4"><span class="font-bold text-brand-primary w-24">3. Do:</span><span class="text-slate-600">Solicita una demo y evalúa el precio vs. soporte.</span></div>
+                                <div class="flex gap-4"><span class="font-bold text-brand-primary w-24">4. Care:</span><span class="text-slate-600">Espera un onboarding rápido y material de capacitación.</span></div>
+                            </div>
+                        </div>
+                        <div id="objeciones" class="tab-content hidden animate-fade-in">
+                            <ul class="space-y-3 text-slate-700">
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-red-500 mt-1"></i> "Es muy caro para mi presupuesto actual."</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-red-500 mt-1"></i> "No sé si funcionará para mi industria específica."</li>
+                                <li class="flex items-start gap-3"><i class="fa-solid fa-circle-xmark text-red-500 mt-1"></i> "Implementar esto me va a quitar tiempo de mis tareas diarias."</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculadora ROI Interactiva -->
+    <section id="calculadora" class="py-20 bg-brand-dark text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl -mr-20 -mt-20"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-brand-accent/10 rounded-full blur-3xl -ml-20 -mb-20"></div>
+        
+        <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold">Calculadora de ROI Inbound</h2>
+                <p class="mt-4 text-slate-300">Simula el impacto financiero de una estrategia de 12 meses. (Basado en heurísticas B2B: 60% margen, 3 años de vida útil del cliente).</p>
+            </div>
+
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 shadow-2xl">
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Inputs -->
+                    <div class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Inversión Mensual en Inbound ($ MXN)</label>
+                            <input type="number" id="inversion" value="50000" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Leads Generados por Mes</label>
+                            <input type="number" id="leads" value="100" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Tasa de Cierre de Leads (%)</label>
+                            <input type="number" id="tasaCierre" value="20" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-slate-300 mb-1">Ticket Promedio Anual por Cliente ($ MXN)</label>
+                            <input type="number" id="ticket" value="120000" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 text-white focus:ring-2 focus:ring-brand-accent focus:border-transparent outline-none transition">
+                        </div>
+                        <button onclick="calcularROI()" class="w-full bg-brand-accent hover:bg-emerald-600 text-white font-bold py-4 rounded-lg shadow-lg transition-all transform hover:scale-[1.02] mt-4">
+                            <i class="fa-solid fa-calculator mr-2"></i> Calcular Proyección
+                        </button>
+                    </div>
+
+                    <!-- Resultados -->
+                    <div class="bg-slate-900/50 rounded-xl p-6 border border-slate-700 flex flex-col justify-center space-y-6">
+                        <div class="text-center">
+                            <p class="text-slate-400 text-sm uppercase tracking-wider font-semibold">Clientes Nuevos / Mes</p>
+                            <p id="res-clientes" class="text-4xl font-bold text-white mt-1">20</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-slate-800 p-4 rounded-lg text-center">
+                                <p class="text-slate-400 text-xs uppercase">CAC Estimado</p>
+                                <p id="res-cac" class="text-2xl font-bold text-blue-400 mt-1">$2,500</p>
+                            </div>
+                            <div class="bg-slate-800 p-4 rounded-lg text-center">
+                                <p class="text-slate-400 text-xs uppercase">LTV Estimado</p>
+                                <p id="res-ltv" class="text-2xl font-bold text-emerald-400 mt-1">$216,000</p>
+                            </div>
+                        </div>
+                        <div class="bg-gradient-to-r from-blue-900/50 to-emerald-900/50 p-6 rounded-lg border border-emerald-500/30 text-center">
+                            <p class="text-emerald-300 text-sm uppercase tracking-wider font-semibold">ROI Anual Proyectado</p>
+                            <p id="res-roi" class="text-5xl font-extrabold text-emerald-400 mt-2 drop-shadow-lg">2,492%</p>
+                            <p class="text-xs text-slate-400 mt-2">*Cifras ilustrativas basadas en modelo de la tesis.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Casos de Éxito -->
+    <section id="casos" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-brand-dark">Casos Reales de Aplicación</h2>
+                <p class="mt-4 text-slate-600">Evidencia de cómo el inbound resuelve problemas específicos de mercado.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Caso 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-orange-100 rounded-full flex items-center justify-center text-orange-600 font-bold">H</div>
+                        <h3 class="text-xl font-bold text-slate-800">HubSpot</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4"><strong>La coherencia como modelo:</strong> No solo venden inbound, lo practican. Su blog, academia gratuita y CRM free actúan como imanes masivos de demanda.</p>
+                    <span class="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded font-semibold">B2B SaaS Global</span>
+                </div>
+                <!-- Caso 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 font-bold">N</div>
+                        <h3 class="text-xl font-bold text-slate-800">Nubank</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4"><strong>Educación en mercado desconfiado:</strong> Usaron contenido financiero transparente y lenguaje simple para ganar la confianza de millones de no bancarizados en LatAm.</p>
+                    <span class="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded font-semibold">Fintech LatAm</span>
+                </div>
+                <!-- Caso 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-sm border border-slate-200 hover:shadow-lg transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold">K</div>
+                        <h3 class="text-xl font-bold text-slate-800">Kueski</h3>
+                    </div>
+                    <p class="text-slate-600 text-sm mb-4"><strong>Transparencia regulatoria:</strong> Calculadoras de crédito y blogs educativos que desmitifican el score crediticio, equilibrando inbound con compliance de CONDUSEF.</p>
+                    <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-semibold">Fintech México</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-dark text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+                    <i class="fa-solid fa-bullseye text-brand-primary text-xl"></i>
+                    <span class="font-bold text-lg text-white">IM Decision Lab</span>
+                </div>
+                <p class="text-sm">Trabajo final de semestre · Licenciatura en Marketing Digital</p>
+                <p class="text-xs mt-1">© 2026. Desarrollado con fines académicos.</p>
+            </div>
+            <div class="flex gap-4">
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-brand-primary hover:text-white transition-colors">
+                    <i class="fa-brands fa-github text-xl"></i>
+                </a>
+                <a href="#" class="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors">
+                    <i class="fa-brands fa-linkedin-in text-xl"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT: Toda la interactividad -->
+    <script>
+        // 1. Barra de Progreso de Lectura
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progress-bar").style.width = scrolled + "%";
+        };
+
+        // 2. Menú Móvil
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        // 3. Tabs del Buyer Persona
+        function openTab(evt, tabName) {
+            // Ocultar todo el contenido
+            let tabContents = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.add("hidden");
+                tabContents[i].classList.remove("block");
+            }
+            // Quitar clase activa de todos los botones
+            let tabLinks = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove("text-brand-primary", "border-brand-primary");
+                tabLinks[i].classList.add("text-slate-500", "border-transparent");
+            }
+            // Mostrar el tab actual y activar el botón
+            document.getElementById(tabName).classList.remove("hidden");
+            document.getElementById(tabName).classList.add("block");
+            evt.currentTarget.classList.remove("text-slate-500", "border-transparent");
+            evt.currentTarget.classList.add("text-brand-primary", "border-brand-primary");
+        }
+
+        // 4. Calculadora de ROI Funcional
+        function calcularROI() {
+            // Obtener valores
+            const inversionMensual = parseFloat(document.getElementById('inversion').value) || 0;
+            const leads = parseFloat(document.getElementById('leads').value) || 0;
+            const tasaCierre = parseFloat(document.getElementById('tasaCierre').value) || 0;
+            const ticket = parseFloat(document.getElementById('ticket').value) || 0;
+
+            // Cálculos (Heurística B2B: Margen 60%, Vida útil 3 años)
+            const clientesPorMes = Math.round(leads * (tasaCierre / 100));
+            const inversionAnual = inversionMensual * 12;
+            const clientesAnuales = clientesPorMes * 12;
+            
+            let cac = 0;
+            if (clientesPorMes > 0) {
+                cac = inversionMensual / clientesPorMes;
+            }
+
+            // LTV = Ticket * Margen (0.6) * Años de retención (3)
+            const ltv = ticket * 0.6 * 3; 
+            
+            let roi = 0;
+            if (inversionAnual > 0) {
+                const ingresoTotal = clientesAnuales * ltv;
+                roi = ((ingresoTotal - inversionAnual) / inversionAnual) * 100;
+            }
+
+            // Actualizar DOM con animación simple
+            document.getElementById('res-clientes').innerText = clientesPorMes;
+            document.getElementById('res-cac').innerText = "$" + cac.toLocaleString('es-MX', {maximumFractionDigits: 0});
+            document.getElementById('res-ltv').innerText = "$" + ltv.toLocaleString('es-MX', {maximumFractionDigits: 0});
+            
+            const roiElement = document.getElementById('res-roi');
+            roiElement.innerText = roi.toLocaleString('es-MX', {maximumFractionDigits: 0}) + "%";
+            
+            // Cambiar color si el ROI es negativo
+            if (roi < 0) {
+                roiElement.classList.remove('text-emerald-400');
+                roiElement.classList.add('text-red-400');
+            } else {
+                roiElement.classList.remove('text-red-400');
+                roiElement.classList.add('text-emerald-400');
+            }
+        }
+
+        // Ejecutar cálculo inicial al cargar
+        window.onload = function() {
+            calcularROI();
+        };
+    </script>
+</body>
+</html>
