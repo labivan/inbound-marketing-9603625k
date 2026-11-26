@@ -2,9 +2,9 @@
 
 ### Trabajo Final de Semestre · Marketing Digital
 
-**Estudiante:** Iván [Tu Apellido]  
+**Estudiante:** Iván Maria Camacho  
 **Docente:** Mtro. Alberto Casimiro Andrade  
-**Institución:** [Nombre de tu Universidad]  
+**Institución:** UMSNH  
 **Fecha:** Noviembre 2026
 
 ---
@@ -95,9 +95,9 @@ El prototipo web se basa en un trabajo de investigación extenso que incluye:
 ## 🔗 Enlace al Sitio Web en Vivo
 
 **Prototipo desplegado en GitHub Pages:**  
-[https://[tu-usuario].github.io/inbound-marketing-lab/](#)
+[https://labivan.github.io/inbound-marketing-9603625k/](#)
 
-*(Reemplaza `[tu-usuario]` con tu nombre de usuario de GitHub)*
+
 
 ---
 
